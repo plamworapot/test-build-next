@@ -22,4 +22,12 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
       # run tests!
-      - run: yarn deploy
+      - run: yarn build
+      - store_artifacts:
+          path: /.next
+    steps:
+       - add_ssh_keys:
+          fingerprints:
+            - "51:7a:ef:15:ad:31:3c:1f:c5:1b:50:13:a1:99:31:d5"
+       - run: yarn export
+       - run: yarn deploy
