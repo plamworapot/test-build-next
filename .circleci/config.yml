@@ -6,7 +6,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: tarampampam/node:12-alpine
+      - image: node:12.13-alpine
     working_directory: ~/repo
     steps:
       - checkout
@@ -31,7 +31,7 @@ jobs:
           paths: out
   deploy:
     docker:
-      - image: tarampampam/node:12-alpine
+      - image: alpine/git
     working_directory: ~/repo
     steps:
        - add_ssh_keys:
