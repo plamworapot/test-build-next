@@ -24,8 +24,8 @@ jobs:
       - run: yarn build
       - run: yarn export
       - store_artifacts:
-          path: out
- deploy:
+          path: out/
+  deploy:
     docker:
       - image: tarampampam/node:12-alpine
     working_directory: ~/repo
