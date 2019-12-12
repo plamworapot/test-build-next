@@ -36,3 +36,9 @@ jobs:
        - run: touch out/.nojekyll
        - run: git add out/ && git commit -m \"Deploy Next.js to gh-pages [skip ci]\"
        - run: git subtree push --prefix out origin gh-pages
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - build
+      - test
