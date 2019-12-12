@@ -23,10 +23,11 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
       - run: yarn build
       - run: yarn export
-      - store_artifacts:
-          path: out/
+      - run: cp out /tmp/out
+      # - store_artifacts:
+      #     path: out/
       - persist_to_workspace:
-          root: ~/repo
+          root: /tmp
           paths: out
   deploy:
     docker:
@@ -35,10 +36,11 @@ jobs:
     steps:
        - attach_workspace:
           # Must be absolute path or relative path from working_directory
-          at: ~/repo
+          at: ~/tmp
        - add_ssh_keys:
           fingerprints:
             - "51:7a:ef:15:ad:31:3c:1f:c5:1b:50:13:a1:99:31:d5"
+       - run: cp /tmp/out ~/repo/out
        - run: touch out/.nojekyll
        - run: git add out/ && git commit -m \"Deploy Next.js to gh-pages [skip ci]\"
        - run: git subtree push --prefix out origin gh-pages
