@@ -1,6 +1,8 @@
 version: 2
 jobs:
   build:
+    branches:
+        only: master
     docker:
       - image: node:12.13-alpine
     working_directory: ~/repo
@@ -26,6 +28,8 @@ jobs:
           root: /tmp/workspace
           paths: out
   deploy:
+    branches:
+        only: master
     docker:
       - image: plamworapot/docker-git-subtree
     working_directory: ~/repo
