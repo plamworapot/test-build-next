@@ -34,12 +34,14 @@ jobs:
       - image: tarampampam/node:12-alpine
     working_directory: ~/repo
     steps:
-       - attach_workspace:
-          # Must be absolute path or relative path from working_directory
-          at: /tmp/workspace
        - add_ssh_keys:
           fingerprints:
             - "51:7a:ef:15:ad:31:3c:1f:c5:1b:50:13:a1:99:31:d5"
+       - run: git init
+       - run: git remote add origin git@github.com:plamworapot/test-build-next.git
+       - attach_workspace:
+          # Must be absolute path or relative path from working_directory
+          at: /tmp/workspace
        - run: ls -al /tmp/workspace
        - run: mv /tmp/workspace/out ~/repo/out
        - run: touch out/.nojekyll
