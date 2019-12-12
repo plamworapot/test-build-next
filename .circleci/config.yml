@@ -39,6 +39,7 @@ jobs:
             - "51:7a:ef:15:ad:31:3c:1f:c5:1b:50:13:a1:99:31:d5"
        - run: git config --global user.email "plamworapot@gmail.com"
        - run: git config --global user.name "Worapot Pengsuk"
+       - run: git config core.sshCommand 'ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no' 
        - run: git init
        - run: git remote add origin git@github.com:plamworapot/test-build-next.git
        - attach_workspace:
