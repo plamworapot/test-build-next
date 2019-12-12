@@ -38,7 +38,7 @@ jobs:
        - run: git subtree push --prefix out origin gh-pages
 workflows:
   version: 2
-  build_and_test:
+  build_and_deploy:
     jobs:
       - build
-      - test
+      - deploy
