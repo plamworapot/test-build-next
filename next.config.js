@@ -4,6 +4,8 @@
 
 const debug = process.env.NODE_ENV !== 'production'
 
+// test commit
+
 module.exports = {
   exportPathMap: function() {
     return {
